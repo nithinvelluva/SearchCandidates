@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <h5 id="tableLabel">Search candidate</h5>
+
+      <p *ngIf="!skills"><em>Loading...</em></p>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Select Skills</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2" *ngIf="skills" style="height: 100%;"
+              [(ngModel)]="selectedSkills">
+              <option *ngFor="let skill of skills" [value]="skill.guid">{{skill?.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="row form-group">
+            <label for="exampleFormControlSelect2">Experience</label>
+            <input type="number" min="1" max="99" step="1" class="form-control form-control-sm"
+              [(ngModel)]="experience">
+          </div>
+          <div class="row justify-content-center">
+            <button type="button" class="btn btn-primary" (click)="search()">Search</button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row mb-3">
+        <div class="col-sm-3" *ngFor="let candidate of candidatesFiltered">
+          <div class="card">
+            <img [src]="candidate.profilePicture" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{candidate.fullName}}</h5>
+              <p class="card-text">{{candidate.email}}</p>
+              <p class="card-text">
+                <button type="button" class="btn btn-danger btn-sm"
+                  (click)="reject(candidate.candidateId)">Reject</button>
+                &nbsp; <button type="button" class="btn btn-success btn-sm" (click)="select(candidate)">Select</button>
+              </p>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <h5 id="tableLabel">Selected candidates</h5>
+      <div style="max-height: 500px;">
+        <div class="card mb-3" style="max-width: 540px;" *ngFor="let candidate of candidatesSelectedList">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img [src]="candidate.profilePicture" class="card-img-top" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <p class="card-text">{{candidate.fullName}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

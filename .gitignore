@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/DotnetWeb/bin/Debug/netcoreapp3.1
+/.vs/DotnetWeb
+/DotnetWeb/obj
+/DotnetWeb/ClientApp/node_modules
+/DotnetWeb/ClientApp/e2e
